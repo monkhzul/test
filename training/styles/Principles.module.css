@@ -1,0 +1,8 @@
+.principles {
+    border-bottom: 1px solid #c1c5c9;
+}
+.image {
+    min-width: 120px;
+    display: flex;
+    justify-content: center;
+}

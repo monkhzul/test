@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id                   Int       @id(map: "PK_AddCourse") @default(autoincrement())
+  name                 String?   @db.NVarChar(Max)
+  type                 String?   @db.NVarChar(50)
+  duration             Int?
+  courseLevel          String?   @db.NVarChar(50)
+  startDate            DateTime? @db.DateTime
+  endDate              DateTime? @db.DateTime
+  sysDate              DateTime? @db.DateTime
+  description          String?   @db.NVarChar(Max)
+  certificate          Boolean?
+  certificateValidDate DateTime? @db.DateTime
+  course_ID            String?   @db.NVarChar(Max)
+}
+
+model User {
+  id                 Int       @id(map: "PK_User") @default(autoincrement())
+  lastName           String?   @db.NVarChar(50)
+  firstName          String?   @db.NVarChar(50)
+  erp_code           Int?
+  department         String?   @db.NVarChar(Max)
+  position           String?   @db.NVarChar(Max)
+  rank               Int?
+  date_of_employment DateTime? @db.Date
+  birth_day          DateTime? @db.Date
+  user_id            Int?
+  company            String?   @db.NVarChar(Max)
+  sysDate            DateTime? @db.DateTime
+}
+
+model CourseDetail {
+  id        Int      @id(map: "PK_CourseDetail") @default(autoincrement())
+  courseID  Int?
+  name      String?  @db.NVarChar(Max)
+  videoName String?  @db.NVarChar(Max)
+  videoPath String?  @db.NVarChar(Max)
+  duration  Int?
+  isExam    Boolean?
+}
+
+model User_Type {
+  id   Int     @id(map: "PK_User_Type") @default(autoincrement())
+  name String? @db.NVarChar(50)
+}
+
+model Course_Detail_Exam {
+  id               Int     @id(map: "PK_Course_Detail_Exam") @default(autoincrement())
+  course_detail_id Int?
+  question         String? @db.NVarChar(Max)
+  a                String? @db.NVarChar(Max)
+  b                String? @db.NVarChar(Max)
+  c                String? @db.NVarChar(Max)
+  correctAnswer    String? @db.NVarChar(Max)
+}
+
+model User_Viewed_Course {
+  id                   Int       @id(map: "PK_User_Viewed_Course") @default(autoincrement())
+  last_name            String?   @db.NVarChar(50)
+  user_name            String?   @db.NVarChar(50)
+  erp_code             Int?
+  course_id            Int?
+  courseName_ID        String?   @db.NVarChar(Max)
+  course_name          String?   @db.NVarChar(Max)
+  date_of_completion   DateTime? @db.DateTime
+  assessment           Int?
+  exam_score           Int?
+  isCertificate        Boolean?
+  certificateValidDate DateTime? @db.DateTime
+  viewed_detail        Int?
+  isComplete           Boolean?
+  sysDate              DateTime? @db.DateTime
+  startDate            DateTime? @db.DateTime
+  endDate              DateTime? @db.DateTime
+}
+
+model User_Viewed_CourseDetail {
+  id                 Int       @id(map: "PK_User_Viewed_CourseDetail") @default(autoincrement())
+  last_name          String?   @db.NVarChar(50)
+  user_name          String?   @db.NVarChar(50)
+  erp_code           Int?
+  course_detail_id   Int?
+  course_detail_name String?   @db.NVarChar(Max)
+  date_of_completion DateTime? @db.DateTime
+  assessment         Int?
+  exam_score         Int?
+  isComplete         Boolean?
+}
+
+model Course_Request {
+  id            Int       @id(map: "PK_Course_Request") @default(autoincrement())
+  user_name     String?   @db.NVarChar(50)
+  last_name     String?   @db.NVarChar(50)
+  erp_code      Int?
+  course_id     Int?
+  course_name   String?   @db.NVarChar(Max)
+  courseName_ID String?   @db.NVarChar(Max)
+  course_type   String?   @db.NVarChar(50)
+  state         String?   @db.NVarChar(50)
+  startDate     DateTime? @db.DateTime
+  endDate       DateTime? @db.DateTime
+  sysDate       DateTime? @db.DateTime
+}

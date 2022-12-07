@@ -1,0 +1,6 @@
+.datepicker {
+    background: url('/images/svg/calendar.svg');
+    background-repeat: no-repeat;
+    background-position: right 1em bottom 10px;;
+    background-size: 1rem;
+}
